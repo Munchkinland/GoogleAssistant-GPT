@@ -1,0 +1,21 @@
+# Ignorar el entorno virtual
+venv/
+.Venv/
+ENV/
+env/
+.venv/
+
+# Ignorar archivos de entorno
+.env
+
+# Ignorar archivos de caché y compilación
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar archivos de configuración de editor
+.vscode/
+.idea/
+*.swp
+*~
