@@ -18,17 +18,18 @@ def webhook():
     user_query = req.get('queryResult').get('queryText')
 
     try:
-        # Llamar a la API de OpenAI
-        response = openai.Completion.create(
-            engine="text-davinci-003",  # Puedes usar otro modelo si lo deseas
-            prompt=user_query,
+        # Llamar a la API de OpenAI usando GPT-3.5 Turbo
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",  # Modelo GPT-3.5 Turbo
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": user_query}
+            ],
             max_tokens=150,
-            temperature=0.7,
-            n=1,
-            stop=None
+            temperature=0.7
         )
 
-        gpt_response = response.choices[0].text.strip()
+        gpt_response = response['choices'][0]['message']['content'].strip()
 
         return jsonify({
             "fulfillmentText": gpt_response
